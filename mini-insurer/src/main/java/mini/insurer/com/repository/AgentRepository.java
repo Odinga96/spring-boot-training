@@ -3,6 +3,7 @@ package mini.insurer.com.repository;
 import mini.insurer.com.model.Agents;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -24,6 +25,15 @@ public interface AgentRepository  extends JpaRepository<Agents, Long> {
 
     List<Agents> findAllByCommissionLessThanEqual(long commission);
 
-//    @Query("select * from Agent a where a ")
-//    List<Agents> filteredAgents();
+    @Query("select Agents from Agents agn " +
+            " where agn.commission >= :commission AND" +
+            "       agn.commission <= ?2")
+    List<Agents> filterCommissions(@Param("commission") long commission, long commission2);
+
+
+
+    @Query("select Agents from Agents")
+    List<Agents> filteredAgents();
+
+
 }

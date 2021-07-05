@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import mini.insurer.com.model.Agents;
 import mini.insurer.com.repository.AgentRepository;
 import mini.insurer.com.repository.ClientRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,9 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
- class AgentServiceImpl implements AgentService{
+ public class AgentServiceImpl implements AgentService{
 
     private final AgentRepository repository;
-    private final ClientRepository clientRepository;
 
     @Override
     public Agents addAgents(Agents agents) {
@@ -33,8 +33,9 @@ import java.util.Optional;
     }
 
     @Override
-    public List<Agents> agents(PageRequest request) {
-        return repository.findAll(request).getContent();
+    public Page<Agents> agents(PageRequest request) {
+        return repository.
+                findAll(request);
     }
 
     @Override

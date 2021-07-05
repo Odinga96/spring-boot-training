@@ -1,6 +1,7 @@
 package mini.insurer.com.services;
 
 import mini.insurer.com.model.Agents;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface AgentService {
     List<Agents> addAgents(List<Agents> agents);
 
     //View agents
-    List<Agents> agents(PageRequest request);
+    Page<Agents> agents(PageRequest request);
 
     //View specific agents
     Agents getAgents(Long agentsCode);
@@ -27,6 +28,8 @@ public interface AgentService {
 
     //Delete agents
     Agents deleteAgents(Long agentsCode);
+
+
 
     List<Agents> getAgents(String name);
 

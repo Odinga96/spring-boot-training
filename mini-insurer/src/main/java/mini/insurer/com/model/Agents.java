@@ -3,6 +3,7 @@ package mini.insurer.com.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author : Odinga David
@@ -29,4 +30,7 @@ public class Agents {
 
     @Column(name="agn_commission")
     private long commission;
+
+    @OneToMany(mappedBy = "agents")
+    private List<Policy> policy;
 }
